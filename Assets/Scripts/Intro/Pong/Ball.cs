@@ -8,7 +8,7 @@ namespace Intro.Pong
 
         [SerializeField]
         private Vector2 _direction;
-        
+
         [SerializeField]
         private Rigidbody2D _rigidbody;
 
@@ -40,6 +40,14 @@ namespace Intro.Pong
             if (collision.gameObject.CompareTag("Paddle"))
             {
                 _direction = -_direction;
+
+                Paddle paddle = collision.gameObject.GetComponent<Paddle>();
+                float hitPosition = (transform.position.y - collision.transform.position.y) /
+                                    paddle.Collider.bounds.size.y;
+
+                _direction.y = hitPosition;
+
+                print(hitPosition);
             }
         }
     }

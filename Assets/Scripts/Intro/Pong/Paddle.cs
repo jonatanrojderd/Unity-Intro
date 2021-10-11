@@ -11,16 +11,14 @@ namespace Intro.Pong
     public class Paddle : MonoBehaviour
     {
         public float Speed = Mathf.PI;
+        public BoxCollider2D Collider;
         
         [SerializeField]
         private float _verticalDirection;
 
         [SerializeField]
         private Rigidbody2D _rigidbody;
-
-        [SerializeField]
-        private BoxCollider2D _collider;
-
+      
         private void Start()
         {
             if (_rigidbody == false)
@@ -28,9 +26,9 @@ namespace Intro.Pong
                 _rigidbody = GetComponent<Rigidbody2D>();
             }
 
-            if (_collider == false)
+            if (Collider == false)
             {
-                _collider = GetComponent<BoxCollider2D>();
+                Collider = GetComponent<BoxCollider2D>();
             }
         }
 
