@@ -5,6 +5,9 @@ namespace Intro.Pong
     public class Ball : MonoBehaviour
     {
         public float Speed = 2f;
+
+        [SerializeField]
+        private Vector2 _direction;
         
         [SerializeField]
         private Rigidbody2D _rigidbody;
@@ -23,11 +26,21 @@ namespace Intro.Pong
             {
                 _collider = GetComponent<CircleCollider2D>();
             }
+
+            _direction = Vector2.right;
         }
 
         private void FixedUpdate()
         {
-            _rigidbody.position += Vector2.right * (Speed * Time.fixedDeltaTime);
+            _rigidbody.position += _direction * (Speed * Time.fixedDeltaTime);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Paddle"))
+            {
+                _direction = -_direction;
+            }
         }
     }
 }
