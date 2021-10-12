@@ -4,7 +4,7 @@ namespace Intro.Pong
 {
     public class Ball : MonoBehaviour
     {
-        public float Speed = 2f;
+        public float Speed = 600f;
 
         [SerializeField]
         private Vector2 _direction;
@@ -27,28 +27,11 @@ namespace Intro.Pong
                 _collider = GetComponent<CircleCollider2D>();
             }
 
-            _direction = Vector2.right;
-        }
-
-        private void FixedUpdate()
-        {
-            _rigidbody.position += _direction * (Speed * Time.fixedDeltaTime);
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Paddle"))
-            {
-                _direction = -_direction;
-
-                Paddle paddle = collision.gameObject.GetComponent<Paddle>();
-                float hitPosition = (transform.position.y - collision.transform.position.y) /
-                                    paddle.Collider.bounds.size.y;
-
-                _direction.y = hitPosition;
-
-                print(hitPosition);
-            }
+            int x = Random.Range(-1, 1);
+            float y = Random.Range(-0.5f, 0.5f);
+            
+            _direction = new Vector2(x, y);
+            _rigidbody.AddForce(_direction * Speed);
         }
     }
 }
