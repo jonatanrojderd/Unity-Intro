@@ -15,6 +15,8 @@ namespace Intro.Pong
         [SerializeField]
         private CircleCollider2D _collider;
 
+        private Vector2 _initialPosition;
+        
         private void Start()
         {
             if (_rigidbody == false)
@@ -27,7 +29,26 @@ namespace Intro.Pong
                 _collider = GetComponent<CircleCollider2D>();
             }
 
+            _initialPosition = transform.position;
+            AddForce();
+        }
+
+        public void ResetPosition()
+        {
+            _direction = Vector2.zero;
+            _rigidbody.velocity = Vector2.zero;
+            _rigidbody.position = _initialPosition;
+        }
+
+        public void AddForce()
+        {
             int x = Random.Range(-1, 1);
+            if (x == 0)
+            {
+                // TODO: Get another x value.
+                x = 1;
+            }
+            
             float y = Random.Range(-0.5f, 0.5f);
             
             _direction = new Vector2(x, y);

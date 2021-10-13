@@ -14,6 +14,9 @@ namespace Intro.Pong
         public TMP_Text Player1ScoreUI;
         public TMP_Text Player2ScoreUI;
 
+        [SerializeField]
+        private Ball _ball;
+
         private void Start()
         {
             Player1ScoreUI.text = Player1Score.ToString();
@@ -22,11 +25,15 @@ namespace Intro.Pong
 
         public void Player1Scored()
         {
+            _ball.ResetPosition();
+            _ball.AddForce();
             print("Player 1 scored!");
         }
 
         public void Player2Scored()
         {
+            _ball.ResetPosition();
+            _ball.AddForce();
             print("Player 2 scored!");
         }
     }

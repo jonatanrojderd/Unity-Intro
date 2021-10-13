@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace Intro.Pong
 {
@@ -8,7 +8,7 @@ namespace Intro.Pong
         public BoxCollider2D Collider;
 
         [SerializeField]
-        private EventTrigger.TriggerEvent _trigger;
+        private UnityEvent _goalEvent;
         
         private void Start()
         {
@@ -22,7 +22,7 @@ namespace Intro.Pong
         {
             if (other.gameObject.CompareTag("Ball"))
             {
-                _trigger.Invoke(null);
+                _goalEvent.Invoke();
             }
         }
     }
