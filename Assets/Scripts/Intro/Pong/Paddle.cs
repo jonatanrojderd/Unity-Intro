@@ -11,6 +11,9 @@ namespace Intro.Pong
     {
         public float Speed = Mathf.PI;
         public BoxCollider2D Collider;
+
+        public KeyCode UpKey;
+        public KeyCode DownKey;
         
         [SerializeField]
         private float _verticalDirection;
@@ -33,7 +36,18 @@ namespace Intro.Pong
 
         private void Update()
         {
-            _verticalDirection = Input.GetAxis("Vertical");
+            if (Input.GetKey(UpKey))
+            {
+                _verticalDirection = 1;
+            }
+            else if (Input.GetKey(DownKey))
+            {
+                _verticalDirection = -1;
+            }
+            else
+            {
+                _verticalDirection = 0;
+            }
         }
 
         private void FixedUpdate()
