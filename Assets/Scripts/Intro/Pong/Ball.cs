@@ -33,7 +33,6 @@ namespace Intro.Pong
             }
 
             _initialPosition = transform.position;
-            AddForce();
         }
 
         public void ResetPosition()
@@ -45,7 +44,7 @@ namespace Intro.Pong
             _rigidbody.position = _initialPosition;
         }
 
-        public void AddForce()
+        public void AddForceInRandomDirection()
         {
             int x = Random.Range(-1, 1);
             if (x == 0)
