@@ -8,6 +8,9 @@ namespace Intro.Pong
 
         [SerializeField]
         private Vector2 _direction;
+        
+        [SerializeField]
+        private Vector2 _previousDirection;
 
         [SerializeField]
         private Rigidbody2D _rigidbody;
@@ -16,7 +19,7 @@ namespace Intro.Pong
         private CircleCollider2D _collider;
 
         private Vector2 _initialPosition;
-        
+
         private void Start()
         {
             if (_rigidbody == false)
@@ -35,6 +38,8 @@ namespace Intro.Pong
 
         public void ResetPosition()
         {
+            _previousDirection = _direction;
+            
             _direction = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;
             _rigidbody.position = _initialPosition;
@@ -50,6 +55,11 @@ namespace Intro.Pong
             }
             
             float y = Random.Range(-0.5f, 0.5f);
+
+            if (x == _previousDirection.x)
+            {
+                x = -x;
+            }
             
             _direction = new Vector2(x, y);
             _rigidbody.AddForce(_direction * Speed);

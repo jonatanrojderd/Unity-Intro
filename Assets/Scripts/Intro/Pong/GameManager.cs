@@ -25,16 +25,20 @@ namespace Intro.Pong
 
         public void Player1Scored()
         {
+            Player1Score++;
+            Player1ScoreUI.text = Player1Score.ToString();
+            
             _ball.ResetPosition();
             _ball.AddForce();
-            print("Player 1 scored!");
         }
 
         public void Player2Scored()
         {
+            Player2Score++;
+            Player2ScoreUI.text = Player2Score.ToString();
+            
             _ball.ResetPosition();
             _ball.AddForce();
-            print("Player 2 scored!");
         }
     }
 }
